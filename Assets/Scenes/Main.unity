@@ -125,7 +125,7 @@ GameObject:
   - component: {fileID: 39941243}
   - component: {fileID: 39941242}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: RestartText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -400,6 +400,8 @@ MonoBehaviour:
   gameOverText: {fileID: 1286877217}
   gameOver: 0
   scrollSpeed: -1.5
+  score: 0
+  scoreText: {fileID: 1620318809}
 --- !u!4 &683925736
 Transform:
   m_ObjectHideFlags: 0
@@ -972,10 +974,10 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 3
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -1031,7 +1033,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d94903e7fbb8e4da780f3888e088f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runSpeed: 1.5
   upForce: 200
 --- !u!95 &1289006131
 Animator:
@@ -1254,8 +1255,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 20.089966}
-  m_SizeDelta: {x: 144.87, y: 40.179993}
+  m_AnchoredPosition: {x: 0, y: 45.65}
+  m_SizeDelta: {x: 265.9, y: 91.3}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1620318808
 MonoBehaviour:
@@ -1270,7 +1271,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 4.99, y: 0.11}
+  m_EffectDistance: {x: 1, y: -1}
   m_UseGraphicAlpha: 1
 --- !u!114 &1620318809
 MonoBehaviour:
@@ -1297,15 +1298,15 @@ MonoBehaviour:
     m_FontSize: 32
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 40
-    m_Alignment: 0
+    m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Score: 0'
+  m_Text: 
 --- !u!222 &1620318810
 CanvasRenderer:
   m_ObjectHideFlags: 0

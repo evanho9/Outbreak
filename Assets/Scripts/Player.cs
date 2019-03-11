@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float runSpeed = 1.5f;
     public float upForce = 200f;
   
     private bool isDead = false;
@@ -25,6 +24,7 @@ public class Player : MonoBehaviour
     {
       if (!isDead) {  
         //Jump
+        GameControl.instance.AddScore(0.01f);
         if (Input.GetMouseButtonDown(0)) {
           Debug.Log("jumped");
           rb2d.velocity = new Vector2(0, 0); 
