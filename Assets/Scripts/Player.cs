@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public float runSpeed = 1.5f;
     public float upForce = 200f;
   
     private bool isDead = false;
@@ -15,15 +16,17 @@ public class Player : MonoBehaviour
     {
       rb2d = GetComponent<Rigidbody2D>();
       anim = GetComponent<Animator>();
+      rb2d.velocity = new Vector2(0, 0);
+      anim.SetTrigger("Run"); 
     }
 
     // Update is called once per frame
     void Update()
     {
-      if (!isDead) {
-        
+      if (!isDead) {  
         //Jump
         if (Input.GetMouseButtonDown(0)) {
+          Debug.Log("jumped");
           rb2d.velocity = new Vector2(0, 0); 
           rb2d.AddForce(new Vector2(0, upForce));
           anim.SetTrigger("Jump");
@@ -31,9 +34,14 @@ public class Player : MonoBehaviour
       }
     }
     
-    void OnCollisionEnter2D() {
-      isDead = true;
-      anim.SetTrigger("Run");
-      GameControl.instance.PlayerDied();
+    void OnCollisionEnter2D(Collision2D collision) {
+      //Player collides with ground
+      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2") {
+        Debug.Log("touched the ground");
+      } else {
+        isDead = true;
+        anim.SetTrigger("Die");
+        GameControl.instance.PlayerDied();
+      }
     }
 }
