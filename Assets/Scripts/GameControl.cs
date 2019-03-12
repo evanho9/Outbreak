@@ -9,7 +9,7 @@ public class GameControl : MonoBehaviour
     public static GameControl instance;
     public GameObject gameOverText;
     public bool gameOver = false;
-    public float scrollSpeed = -1.5f;
+    public float scrollSpeed = -5f;
     public float score = 0;
     public Text scoreText;
   
@@ -26,6 +26,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      scrollSpeed -= 0.005f;
       if (gameOver && Input.GetMouseButtonDown(0)) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
       }

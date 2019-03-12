@@ -7,6 +7,7 @@ public class Player : MonoBehaviour
     public float upForce = 10f;
   
     private bool isDead = false;
+    private bool isGrounded = false;
     private Rigidbody2D rb2d;
     private Animator anim;
     
@@ -22,11 +23,13 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+      //isGrounded = Physics2D.OverlapCircle(GroundCheck1.position,0.15f, groundLayer);
       rb2d.velocity = new Vector2(GameControl.instance.scrollSpeed, rb2d.velocity.y);
       if (!isDead) {  
-        //Jump
         GameControl.instance.AddScore(0.01f);
-        if (Input.GetMouseButtonDown(0)) {
+        //Jump
+        if (Input.GetMouseButtonDown(0) && isGrounded) {
+          isGrounded = false;
           Debug.Log("jumped");
           rb2d.AddForce(new Vector2(0, upForce));
           //rb2d.velocity = new Vector2(rb2d.velocity.x, upForce); 
@@ -40,6 +43,7 @@ public class Player : MonoBehaviour
       //Player collides with ground
       if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2") {
         Debug.Log("touched the ground");
+        isGrounded = true;
       } else {
         isDead = true;
         anim.SetTrigger("Die");

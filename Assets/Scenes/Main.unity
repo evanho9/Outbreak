@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 1286877217}
   gameOver: 0
-  scrollSpeed: -10
+  scrollSpeed: -5
   score: 0
   scoreText: {fileID: 1620318809}
 --- !u!4 &683925736
@@ -892,7 +892,6 @@ GameObject:
   - component: {fileID: 1289006129}
   - component: {fileID: 1289006130}
   - component: {fileID: 1289006131}
-  - component: {fileID: 1289006132}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1053,18 +1052,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1289006132
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1289006125}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f508c1649124246815ea1247226679, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1569155795
 GameObject:
   m_ObjectHideFlags: 0
