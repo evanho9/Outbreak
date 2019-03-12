@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 1286877217}
   gameOver: 0
-  scrollSpeed: -1.5
+  scrollSpeed: -10
   score: 0
   scoreText: {fileID: 1620318809}
 --- !u!4 &683925736
@@ -956,7 +956,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289006125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46, y: -0.58, z: 0}
+  m_LocalPosition: {x: -0.296, y: -0.661, z: 0}
   m_LocalScale: {x: 1.7475, y: 2.24, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -974,15 +974,15 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.1
+  m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 3
+  m_AngularDrag: 0
+  m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
-  m_Constraints: 1
+  m_CollisionDetection: 0
+  m_Constraints: 5
 --- !u!60 &1289006129
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -1033,7 +1033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d94903e7fbb8e4da780f3888e088f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upForce: 200
+  upForce: 300
 --- !u!95 &1289006131
 Animator:
   serializedVersion: 3
@@ -1060,7 +1060,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1289006125}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77f508c1649124246815ea1247226679, type: 3}
   m_Name: 
