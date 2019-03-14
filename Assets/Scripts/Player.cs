@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float upForce = 10f;
+    public float upForce = 300f;
   
     private bool isDead = false;
     private bool isGrounded = false;
@@ -41,7 +41,8 @@ public class Player : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision) {
       //Player collides with ground
-      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2") {
+      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2"
+      || collision.gameObject.name == "Building" || collision.gameObject.name == "Building 2") {
         Debug.Log("touched the ground");
         isGrounded = true;
       } else {

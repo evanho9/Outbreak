@@ -12,6 +12,9 @@ public class GameControl : MonoBehaviour
     public float scrollSpeed = -5f;
     public float score = 0;
     public Text scoreText;
+    
+    public GameObject building;
+    public GameObject ground;
   
     // Start is called before the first frame update
     void Awake()
@@ -21,12 +24,17 @@ public class GameControl : MonoBehaviour
       } else {
         Destroy (gameObject);
       }
+      building = GameObject.Find("Building");
+      building.SetActive(false);
+
+      ground = GameObject.Find("Ground");
     }
 
     // Update is called once per frame
     void Update()
     {
-      scrollSpeed -= 0.005f;
+      if (scrollSpeed >= -7.5)
+        scrollSpeed -= 0.005f;
       if (gameOver && Input.GetMouseButtonDown(0)) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
       }
@@ -48,5 +56,30 @@ public class GameControl : MonoBehaviour
     {
       int scoreRounded = (int)score;
       scoreText.text = "Score: " + scoreRounded.ToString();
+    }
+    
+    public void SpawnBuilding(float x)
+    {
+      Instantiate(building, new Vector3(x,0,0), transform.rotation);
+    }
+    
+    public void ShowBuilding()
+    {
+      building.SetActive(true);
+    }
+    
+    public void HideBuilding()
+    {
+      building.SetActive(false);
+    }
+    
+    public void ShowGround()
+    {
+      ground.SetActive(true);
+    }
+    
+    public void HideGround()
+    {
+      ground.SetActive(false);
     }
 }

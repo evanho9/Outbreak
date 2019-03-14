@@ -6,12 +6,16 @@ public class RepeatingBackground : MonoBehaviour
 {
     private BoxCollider2D groundCollider;
     private float groundHorizontalLength;
+    private Vector2 groundOffset;
+    private bool isEvenTile;
   
     // Start is called before the first frame update
     void Start()
     {
       groundCollider = GetComponent<BoxCollider2D>();
       groundHorizontalLength = groundCollider.size.x * transform.localScale.x;
+      groundOffset = new Vector2(groundHorizontalLength * 2f, 0);
+      isEvenTile = false;
     }
 
     // Update is called once per frame
@@ -19,12 +23,21 @@ public class RepeatingBackground : MonoBehaviour
     {
       if (transform.position.x < -groundHorizontalLength) {
         RepositionBackground();
+        isEvenTile = !isEvenTile;
+        if (isEvenTile) {
+          //GameControl.instance.SpawnBuilding(transform.position.x + groundOffset.x);
+          GameControl.instance.ShowBuilding();
+          //GameControl.instance.HideGround();
+        }
+        else {
+          GameControl.instance.HideBuilding();
+          //GameControl.instance.ShowGround();
+        }
       }
     }
     
     private void RepositionBackground()
     {
-      Vector2 groundOffset = new Vector2(groundHorizontalLength * 2f, 0);
       transform.position = (Vector2)transform.position + groundOffset;
     }
 }
