@@ -13,10 +13,11 @@ public class GameControl : MonoBehaviour
     public float score = 0;
     public Text scoreText;
     
+    public AudioClip mainTheme;
+    
     public GameObject building;
     public GameObject ground;
   
-    // Start is called before the first frame update
     void Awake()
     {
       if (instance == null) {
@@ -28,6 +29,11 @@ public class GameControl : MonoBehaviour
       building.SetActive(false);
 
       ground = GameObject.Find("Ground");
+    }
+    
+    void Start()
+    {
+      SoundManager.PlayRepeating(mainTheme);
     }
 
     // Update is called once per frame
