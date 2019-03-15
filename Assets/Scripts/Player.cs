@@ -28,7 +28,7 @@ public class Player : MonoBehaviour
       if (!isDead) {  
         GameControl.instance.AddScore(0.01f);
         //Jump
-        if (Input.GetMouseButtonDown(0) && isGrounded) {
+        if (Input.GetKeyDown("space") && isGrounded) {
           isGrounded = false;
           Debug.Log("jumped");
           rb2d.AddForce(new Vector2(0, upForce));
@@ -50,5 +50,12 @@ public class Player : MonoBehaviour
         anim.SetTrigger("Die");
         GameControl.instance.PlayerDied();
       }
+    }
+    
+    void OnBecameInvisible()
+    {
+      isDead = true;
+      anim.SetTrigger("Die");
+      GameControl.instance.PlayerDied();
     }
 }

@@ -33,7 +33,7 @@ public class GameControl : MonoBehaviour
     
     void Start()
     {
-      SoundManager.PlayRepeating(mainTheme);
+      //SoundManager.PlayRepeating(mainTheme);
     }
 
     // Update is called once per frame
