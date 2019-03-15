@@ -7,16 +7,23 @@ using UnityEngine.UI;
 public class GameControl : MonoBehaviour
 {
     public static GameControl instance;
+    
     public GameObject gameOverText;
     public bool gameOver = false;
+    
     public float scrollSpeed = -5f;
+    
     public float score = 0;
     public Text scoreText;
     
     public AudioClip mainTheme;
     
+    public GameObject player;
+    
     public GameObject building;
     public GameObject ground;
+    
+    public float spawnPositionOffset = 10;
   
     void Awake()
     {
@@ -25,8 +32,10 @@ public class GameControl : MonoBehaviour
       } else {
         Destroy (gameObject);
       }
+      
+      player = GameObject.Find("Player");
+      
       building = GameObject.Find("Building");
-      building.SetActive(false);
 
       ground = GameObject.Find("Ground");
     }
@@ -41,7 +50,7 @@ public class GameControl : MonoBehaviour
     {
       if (scrollSpeed >= -7.5)
         scrollSpeed -= 0.005f;
-      if (gameOver && Input.GetMouseButtonDown(0)) {
+      if (gameOver && Input.GetKeyDown("space")) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
       }
     }
@@ -64,28 +73,20 @@ public class GameControl : MonoBehaviour
       scoreText.text = "Score: " + scoreRounded.ToString();
     }
     
-    public void SpawnBuilding(float x)
+    public void SpawnBuilding()
     {
-      Instantiate(building, new Vector3(x,0,0), transform.rotation);
+      Vector3 spawnPosition = player.transform.position;
+      spawnPosition.x += spawnPositionOffset;
+      spawnPosition.y = -3;
+      GameObject spawnedIn = Instantiate(ground, spawnPosition, Quaternion.identity);
     }
     
-    public void ShowBuilding()
+    public void SpawnGround()
     {
-      building.SetActive(true);
-    }
-    
-    public void HideBuilding()
-    {
-      building.SetActive(false);
-    }
-    
-    public void ShowGround()
-    {
-      ground.SetActive(true);
-    }
-    
-    public void HideGround()
-    {
-      ground.SetActive(false);
+      Debug.Log("ground spawned");
+      Vector3 spawnPosition = player.transform.position;
+      spawnPosition.x += spawnPositionOffset;
+      spawnPosition.y = -5;
+      Instantiate(ground, spawnPosition, Quaternion.identity);
     }
 }

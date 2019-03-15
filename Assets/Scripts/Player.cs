@@ -30,10 +30,7 @@ public class Player : MonoBehaviour
         //Jump
         if (Input.GetKeyDown("space") && isGrounded) {
           isGrounded = false;
-          Debug.Log("jumped");
           rb2d.AddForce(new Vector2(0, upForce));
-          //rb2d.velocity = new Vector2(rb2d.velocity.x, upForce); 
-          //rb2d.AddForce(Vector2.up * upForce, ForceMode2D.Impulse);
           anim.SetTrigger("Jump");
         }
       }
@@ -41,9 +38,8 @@ public class Player : MonoBehaviour
     
     void OnCollisionEnter2D(Collision2D collision) {
       //Player collides with ground
-      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2"
-      || collision.gameObject.name == "Building" || collision.gameObject.name == "Building 2") {
-        Debug.Log("touched the ground");
+      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2" || collision.gameObject.name == "Ground(Clone)"
+      || collision.gameObject.name == "Building" || collision.gameObject.name == "Building 2" || collision.gameObject.name == "Building(Clone)") {
         isGrounded = true;
       } else {
         isDead = true;

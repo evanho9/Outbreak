@@ -24,15 +24,6 @@ public class RepeatingBackground : MonoBehaviour
       if (transform.position.x < -groundHorizontalLength) {
         RepositionBackground();
         isEvenTile = !isEvenTile;
-        if (isEvenTile) {
-          //GameControl.instance.SpawnBuilding(transform.position.x + groundOffset.x);
-          GameControl.instance.ShowBuilding();
-          //GameControl.instance.HideGround();
-        }
-        else {
-          GameControl.instance.HideBuilding();
-          //GameControl.instance.ShowGround();
-        }
       }
     }
     
