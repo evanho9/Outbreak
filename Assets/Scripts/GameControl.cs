@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour
     public GameObject building;
     public GameObject ground;
     
-    public float spawnPositionOffset = 10;
+    public float spawnPositionOffset = 20;
   
     void Awake()
     {
@@ -35,9 +35,9 @@ public class GameControl : MonoBehaviour
       
       player = GameObject.Find("Player");
       
-      building = GameObject.Find("Building");
+      building = GameObject.Find("Building (1)");
 
-      ground = GameObject.Find("Ground");
+      ground = GameObject.Find("Ground (1)");
     }
     
     void Start()
@@ -87,6 +87,7 @@ public class GameControl : MonoBehaviour
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
       spawnPosition.y = -5;
-      Instantiate(ground, spawnPosition, Quaternion.identity);
+      GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
+      newGround.name = "Ground";
     }
 }
