@@ -23,6 +23,7 @@ public class GameControl : MonoBehaviour
     public GameObject building;
     public GameObject ground;
     
+    private bool lastSpawnedWasHole = false;
     public float spawnPositionOffset = 20;
   
     void Awake()
@@ -34,8 +35,6 @@ public class GameControl : MonoBehaviour
       }
       
       player = GameObject.Find("Player");
-      
-      building = GameObject.Find("Building (1)");
 
       ground = GameObject.Find("Ground (1)");
     }
@@ -73,19 +72,44 @@ public class GameControl : MonoBehaviour
       scoreText.text = "Score: " + scoreRounded.ToString();
     }
     
-    public void SpawnBuilding()
+    public void SpawnTile(int tileType)
     {
+      if (tileType == 0)
+        SpawnGround();
+      else if (tileType == 1)
+        SpawnBuilding();
+      else if (tileType == 2)
+        if (lastSpawnedWasHole)
+          SpawnGround();
+        else
+          SpawnHole();
+    }
+    
+    void SpawnBuilding()
+    {
+      Debug.Log("building spawned");
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
       spawnPosition.y = -3;
-      GameObject spawnedIn = Instantiate(ground, spawnPosition, Quaternion.identity);
+      GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
+      newBuilding.name = "Ground";
     }
     
-    public void SpawnGround()
+    void SpawnGround()
     {
       Debug.Log("ground spawned");
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
+      spawnPosition.y = -5;
+      GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
+      newGround.name = "Ground";
+    }
+    
+    void SpawnHole()
+    {
+      Debug.Log("hole spawned");
+      Vector3 spawnPosition = player.transform.position;
+      spawnPosition.x += spawnPositionOffset + spawnPositionOffset/2;
       spawnPosition.y = -5;
       GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
       newGround.name = "Ground";

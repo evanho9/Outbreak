@@ -27,7 +27,8 @@ public class ScrollingObject : MonoBehaviour
     void OnBecameInvisible()
     {
         Debug.Log("out of view");
-        GameControl.instance.SpawnGround();
+        int randInt = (int)Random.Range(0, 3);
+        GameControl.instance.SpawnTile(randInt);
         Destroy(this.gameObject);
     }
 }
