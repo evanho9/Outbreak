@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour
     public GameObject building;
     public GameObject ground;
     
-    private bool lastSpawnedWasHole = false;
+    private bool lastSpawnedWasLava = false;
     public float spawnPositionOffset = 20;
   
     void Awake()
@@ -35,8 +35,6 @@ public class GameControl : MonoBehaviour
       }
       
       player = GameObject.Find("Player");
-
-      ground = GameObject.Find("Ground (1)");
     }
     
     void Start()
@@ -79,15 +77,16 @@ public class GameControl : MonoBehaviour
       else if (tileType == 1)
         SpawnBuilding();
       else if (tileType == 2)
-        if (lastSpawnedWasHole)
+        if (lastSpawnedWasLava)
           SpawnGround();
         else
-          SpawnHole();
+          SpawnLava();
     }
     
     void SpawnBuilding()
     {
       Debug.Log("building spawned");
+      lastSpawnedWasLava = false;
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
       spawnPosition.y = -3;
@@ -98,6 +97,7 @@ public class GameControl : MonoBehaviour
     void SpawnGround()
     {
       Debug.Log("ground spawned");
+      lastSpawnedWasLava = false;
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
       spawnPosition.y = -5;
@@ -105,13 +105,15 @@ public class GameControl : MonoBehaviour
       newGround.name = "Ground";
     }
     
-    void SpawnHole()
+    void SpawnLava()
     {
-      Debug.Log("hole spawned");
+      Debug.Log("lava spawned");
+      lastSpawnedWasLava = true;;
       Vector3 spawnPosition = player.transform.position;
-      spawnPosition.x += spawnPositionOffset + spawnPositionOffset/2;
+      spawnPosition.x += spawnPositionOffset;
       spawnPosition.y = -5;
-      GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
-      newGround.name = "Ground";
+      GameObject newLava = Instantiate(ground, spawnPosition, Quaternion.identity);
+      newLava.name = "Lava";
+      newLava.GetComponent<SpriteRenderer>().enabled = false;
     }
 }

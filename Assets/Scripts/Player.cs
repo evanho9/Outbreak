@@ -33,13 +33,20 @@ public class Player : MonoBehaviour
           rb2d.AddForce(new Vector2(0, upForce));
           anim.SetTrigger("Jump");
         }
+        if (Input.GetKeyDown("x") && isGrounded) {
+          Weapon weapon = GetComponent<Weapon>();
+          if (weapon != null) {
+            weapon.Attack(false);
+          }
+        }
       }
     }
     
-    void OnCollisionEnter2D(Collision2D collision) {
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
       //Player collides with ground
-      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "Ground 2" || collision.gameObject.name == "Ground(Clone)"
-      || collision.gameObject.name == "Building" || collision.gameObject.name == "Building 2" || collision.gameObject.name == "Building(Clone)") {
+      if ((collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround"
+      || collision.gameObject.name == "Building")) {
         isGrounded = true;
       } else {
         isDead = true;
