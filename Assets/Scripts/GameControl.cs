@@ -109,11 +109,7 @@ public class GameControl : MonoBehaviour
     {
       Debug.Log("lava spawned");
       lastSpawnedWasLava = true;;
-      Vector3 spawnPosition = player.transform.position;
-      spawnPosition.x += spawnPositionOffset;
-      spawnPosition.y = -5;
-      GameObject newLava = Instantiate(ground, spawnPosition, Quaternion.identity);
-      newLava.name = "Lava";
-      newLava.GetComponent<SpriteRenderer>().enabled = false;
+
+      Invoke("SpawnGround",0.4f);
     }
 }
