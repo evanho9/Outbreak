@@ -19,12 +19,14 @@ public class GameControl : MonoBehaviour
     public AudioClip mainTheme;
     
     public GameObject player;
+    public GameObject enemy;
     
     public GameObject building;
     public GameObject ground;
     
+    private float enemySpawnTime = 2f;
     private bool lastSpawnedWasLava = false;
-    public float spawnPositionOffset = 20;
+    private float spawnPositionOffset = 20;
   
     void Awake()
     {
@@ -40,6 +42,7 @@ public class GameControl : MonoBehaviour
     void Start()
     {
       //SoundManager.PlayRepeating(mainTheme);
+      InvokeRepeating("SpawnEnemy", enemySpawnTime, enemySpawnTime);
     }
 
     // Update is called once per frame
@@ -111,5 +114,14 @@ public class GameControl : MonoBehaviour
       lastSpawnedWasLava = true;;
 
       Invoke("SpawnGround",0.4f);
+    }
+    
+    void SpawnEnemy()
+    {
+      Debug.Log("enemy spawned");
+      Vector3 spawnPosition = player.transform.position;
+      spawnPosition.x += spawnPositionOffset;
+      //spawnPosition.y = -0.5f;
+      GameObject newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
     }
 }

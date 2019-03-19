@@ -33,7 +33,7 @@ public class Player : MonoBehaviour
           rb2d.AddForce(new Vector2(0, upForce));
           anim.SetTrigger("Jump");
         }
-        if (Input.GetKeyDown("x") && isGrounded) {
+        if (Input.GetKeyDown("x")) {
           Weapon weapon = GetComponent<Weapon>();
           if (weapon != null) {
             weapon.Attack(false);

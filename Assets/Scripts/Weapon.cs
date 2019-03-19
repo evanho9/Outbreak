@@ -55,7 +55,9 @@ public class Weapon : MonoBehaviour
       var shotTransform = Instantiate(shotPrefab) as Transform;
 
       // Assign position
-      shotTransform.position = transform.position;
+      var position = transform.position;
+      position.x += 1;
+      shotTransform.position = position;
 
       // The is enemy property
       Shot shot = shotTransform.gameObject.GetComponent<Shot>();
