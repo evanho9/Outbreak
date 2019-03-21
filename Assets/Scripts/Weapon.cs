@@ -24,7 +24,13 @@ public class Weapon : MonoBehaviour
   //--------------------------------
 
   private float shootCooldown;
+  private AudioSource source;
 
+  void Awake() 
+  {
+    source = GetComponent<AudioSource>();
+  }
+  
   void Start()
   {
     shootCooldown = 0f;
@@ -49,6 +55,7 @@ public class Weapon : MonoBehaviour
   {
     if (CanAttack)
     {
+      source.Play();
       shootCooldown = shootingRate;
 
       // Create a new shot

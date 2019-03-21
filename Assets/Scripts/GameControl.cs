@@ -51,7 +51,7 @@ public class GameControl : MonoBehaviour
       if (scrollSpeed >= -7.5)
         scrollSpeed -= 0.005f;
       if (gameOver && Input.GetKeyDown("space")) {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
       }
     }
     
