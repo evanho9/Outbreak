@@ -29,11 +29,13 @@ public class Player : MonoBehaviour
         GameControl.instance.AddScore(0.01f);
         //Jump
         if (Input.GetKeyDown("space") && isGrounded) {
+          Debug.Log("jump");
           isGrounded = false;
           rb2d.AddForce(new Vector2(0, upForce));
           anim.SetTrigger("Jump");
         }
         if (Input.GetKeyDown("x")) {
+          Debug.Log("shoot");
           Weapon weapon = GetComponent<Weapon>();
           if (weapon != null) {
             weapon.Attack(false);
