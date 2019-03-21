@@ -16,8 +16,6 @@ public class GameControl : MonoBehaviour
     public float score = 0;
     public Text scoreText;
     
-    public AudioClip mainTheme;
-    
     public GameObject player;
     public GameObject enemy;
     
@@ -26,7 +24,7 @@ public class GameControl : MonoBehaviour
     
     private float enemySpawnTime = 2f;
     private bool lastSpawnedWasLava = false;
-    private float spawnPositionOffset = 20;
+    private float spawnPositionOffset = 17.5f;
   
     void Awake()
     {
@@ -41,15 +39,14 @@ public class GameControl : MonoBehaviour
     
     void Start()
     {
-      //SoundManager.PlayRepeating(mainTheme);
-      InvokeRepeating("SpawnEnemy", enemySpawnTime, enemySpawnTime);
+      //InvokeRepeating("SpawnEnemy", enemySpawnTime, enemySpawnTime);
     }
 
     // Update is called once per frame
     void Update()
     {
-      if (scrollSpeed >= -7.5)
-        scrollSpeed -= 0.005f;
+      if (scrollSpeed >= -20)
+        scrollSpeed -= 0.002f;
       if (gameOver && Input.GetKeyDown("space")) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
       }
@@ -80,8 +77,13 @@ public class GameControl : MonoBehaviour
       else if (tileType == 1)
         SpawnBuilding();
       else if (tileType == 2)
-        if (lastSpawnedWasLava)
-          SpawnGround();
+        if (lastSpawnedWasLava) {
+          int randInt = (int)Random.Range(0, 2);
+          if (randInt == 0)
+            SpawnGround();
+          else
+            SpawnBuilding();
+        }
         else
           SpawnLava();
     }
@@ -95,6 +97,7 @@ public class GameControl : MonoBehaviour
       spawnPosition.y = -3;
       GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
       newBuilding.name = "Ground";
+      SpawnEnemy(2f);
     }
     
     void SpawnGround()
@@ -106,6 +109,7 @@ public class GameControl : MonoBehaviour
       spawnPosition.y = -5;
       GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
       newGround.name = "Ground";
+      SpawnEnemy(0f);
     }
     
     void SpawnLava()
@@ -116,12 +120,13 @@ public class GameControl : MonoBehaviour
       Invoke("SpawnGround",0.4f);
     }
     
-    void SpawnEnemy()
+    void SpawnEnemy(float yPos)
     {
       Debug.Log("enemy spawned");
       Vector3 spawnPosition = player.transform.position;
-      spawnPosition.x += spawnPositionOffset;
-      //spawnPosition.y = -0.5f;
+      int randFloat = Random.Range(0, 5);
+      spawnPosition.x += spawnPositionOffset + randFloat;
+      spawnPosition.y = yPos;
       GameObject newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
     }
 }

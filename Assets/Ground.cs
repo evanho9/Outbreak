@@ -18,9 +18,11 @@ public class Ground : MonoBehaviour
         
     void OnBecameInvisible()
     {
+      if (!GameControl.instance.gameOver) {
         Debug.Log("out of view");
         int randInt = (int)Random.Range(0, 3);
         GameControl.instance.SpawnTile(randInt);
         Destroy(this.gameObject);
+      }
     }
 }
