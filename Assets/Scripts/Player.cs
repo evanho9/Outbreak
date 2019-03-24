@@ -29,13 +29,11 @@ public class Player : MonoBehaviour
         GameControl.instance.AddScore(0.01f);
         //Jump
         if (Input.GetKeyDown("space") && isGrounded) {
-          Debug.Log("jump");
           isGrounded = false;
           rb2d.AddForce(new Vector2(0, upForce));
           anim.SetTrigger("Jump");
         }
-        if (Input.GetKeyDown("x")) {
-          Debug.Log("shoot");
+        if (Input.GetKeyDown("x")) { 
           Weapon weapon = GetComponent<Weapon>();
           if (weapon != null) {
             weapon.Attack(false);
@@ -47,7 +45,7 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) 
     {
       //Player collides with ground
-      if ((collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround"
+      if ((collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround" || collision.gameObject.name == "SpawnGround2"
       || collision.gameObject.name == "Building")) {
         isGrounded = true;
       } else {

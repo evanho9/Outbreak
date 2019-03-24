@@ -97,7 +97,7 @@ public class GameControl : MonoBehaviour
       lastSpawnedWasLava = false;
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
-      spawnPosition.y = -3;
+      spawnPosition.y = -4;
       GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
       newBuilding.name = "Ground";
       SpawnEnemy(2f);
@@ -109,7 +109,7 @@ public class GameControl : MonoBehaviour
       lastSpawnedWasLava = false;
       Vector3 spawnPosition = player.transform.position;
       spawnPosition.x += spawnPositionOffset;
-      spawnPosition.y = -5;
+      spawnPosition.y = -5.001f;
       GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
       newGround.name = "Ground";
       SpawnEnemy(0f);
