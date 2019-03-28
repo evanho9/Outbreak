@@ -416,11 +416,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverText: {fileID: 1286877217}
   gameOver: 0
-  scrollSpeed: -15
+  scrollSpeed: -5
   score: 0
   scoreText: {fileID: 1620318809}
   player: {fileID: 0}
   enemy: {fileID: 8418372139153058151, guid: 649de52edddfde34c825211e4febc5fd, type: 3}
+  coin: {fileID: 437588093596535389, guid: 614465668e9873b4aa167642117804fd, type: 3}
   building: {fileID: 23980190731411601, guid: b25018649a662ba4190e6823fae4d9d4, type: 3}
   ground: {fileID: 5686985233025999409, guid: 5f3be8fe8b8ec0c41a1f8c65a8d423f6, type: 3}
 --- !u!4 &683925736
@@ -483,7 +484,7 @@ AudioSource:
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -1198,7 +1199,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 0
@@ -1415,7 +1416,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 5204686635682410311, guid: 383848bf65449d845a59d13de41ea621,
     type: 3}
-  shootingRate: 0.1
+  shootingRate: 1
 --- !u!82 &1289006133
 AudioSource:
   m_ObjectHideFlags: 0

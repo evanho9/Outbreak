@@ -22,4 +22,11 @@ public class ScrollingObject : MonoBehaviour
         rb2d.velocity = new Vector2(0, 0);
       }
     }
+    
+    void OnBecameInvisible()
+    {
+      if (!GameControl.instance.gameOver) {
+        Destroy(this.gameObject);
+      }
+    }
 }

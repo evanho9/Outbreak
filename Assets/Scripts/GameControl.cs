@@ -18,13 +18,14 @@ public class GameControl : MonoBehaviour
     
     public GameObject player;
     public GameObject enemy;
+    public GameObject coin;
     
     public GameObject building;
     public GameObject ground;
     
     private float enemySpawnTime = 2f;
     private bool lastSpawnedWasLava = false;
-    private float spawnPositionOffset = 17.5f;
+    private float spawnPositionOffset = 25f;
   
     void Awake()
     {
@@ -45,8 +46,10 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if (scrollSpeed >= -20)
+      if (scrollSpeed >= -20 && !gameOver) {
         scrollSpeed -= 0.002f;
+        AddScore(-scrollSpeed/500);
+      }
       if (gameOver && Input.GetKeyDown("space")) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
       }
@@ -75,61 +78,79 @@ public class GameControl : MonoBehaviour
     
     public void SpawnTile(int tileType)
     {
-      if (tileType == 0)
-        SpawnGround();
-      else if (tileType == 1)
-        SpawnBuilding();
-      else if (tileType == 2)
-        if (lastSpawnedWasLava) {
-          int randInt = (int)Random.Range(0, 2);
-          if (randInt == 0)
-            SpawnGround();
+      if (!gameOver) {
+        SpawnCoin(tileType-0.5f);
+        if (tileType == 0)
+          SpawnGround();
+        else if (tileType == 1)
+          SpawnBuilding();
+        else if (tileType == 2)
+          if (lastSpawnedWasLava) {
+            int randInt = (int)Random.Range(0, 2);
+            if (randInt == 0)
+              SpawnGround();
+            else
+              SpawnBuilding();
+          }
           else
-            SpawnBuilding();
-        }
-        else
-          SpawnLava();
+            SpawnLava();
+      }
     }
     
     void SpawnBuilding()
     {
-      Debug.Log("building spawned");
-      lastSpawnedWasLava = false;
-      Vector3 spawnPosition = player.transform.position;
-      spawnPosition.x += spawnPositionOffset;
-      spawnPosition.y = -4;
-      GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
-      newBuilding.name = "Ground";
-      SpawnEnemy(2f);
+      if (!gameOver) {
+        lastSpawnedWasLava = false;
+        Vector3 spawnPosition = player.transform.position;
+        spawnPosition.x += spawnPositionOffset;
+        spawnPosition.y = -4;
+        GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
+        newBuilding.name = "Ground";
+        SpawnEnemy(2f);
+      }
     }
     
     void SpawnGround()
     {
-      Debug.Log("ground spawned");
-      lastSpawnedWasLava = false;
-      Vector3 spawnPosition = player.transform.position;
-      spawnPosition.x += spawnPositionOffset;
-      spawnPosition.y = -5.001f;
-      GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
-      newGround.name = "Ground";
-      SpawnEnemy(0f);
+      if (!gameOver) {
+        lastSpawnedWasLava = false;
+        Vector3 spawnPosition = player.transform.position;
+        spawnPosition.x += spawnPositionOffset;
+        spawnPosition.y = -5.001f;
+        GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
+        newGround.name = "Ground";
+        SpawnEnemy(0f);
+      }
     }
     
     void SpawnLava()
     {
-      Debug.Log("lava spawned");
-      lastSpawnedWasLava = true;;
+      if (!gameOver) {
+        lastSpawnedWasLava = true;;
 
-      Invoke("SpawnGround",0.4f);
+        Invoke("SpawnGround",0.4f);
+      }
     }
     
     void SpawnEnemy(float yPos)
     {
-      Debug.Log("enemy spawned");
-      Vector3 spawnPosition = player.transform.position;
-      int randFloat = Random.Range(0, 5);
-      spawnPosition.x += spawnPositionOffset + randFloat;
-      spawnPosition.y = yPos;
-      GameObject newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(0, 5);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos;
+        GameObject newEnemy = Instantiate(enemy, spawnPosition, Quaternion.identity);
+      }
+    }
+    
+    void SpawnCoin(float yPos)
+    {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(0, 5);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos;
+        GameObject newEnemy = Instantiate(coin, spawnPosition, Quaternion.identity);
+      }
     }
 }

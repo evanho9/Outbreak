@@ -26,7 +26,6 @@ public class Player : MonoBehaviour
       //isGrounded = Physics2D.OverlapCircle(GroundCheck1.position,0.15f, groundLayer);
       rb2d.velocity = new Vector2(GameControl.instance.scrollSpeed, rb2d.velocity.y);
       if (!isDead) {  
-        GameControl.instance.AddScore(0.01f);
         //Jump
         if (Input.GetKeyDown("space") && isGrounded) {
           isGrounded = false;
@@ -45,8 +44,9 @@ public class Player : MonoBehaviour
     void OnCollisionEnter2D(Collision2D collision) 
     {
       //Player collides with ground
-      if ((collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround" || collision.gameObject.name == "SpawnGround2"
-      || collision.gameObject.name == "Building")) {
+      if ((collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround" 
+      || collision.gameObject.name == "SpawnGround2" || collision.gameObject.name == "Building"
+      || collision.gameObject.name == "Coin" || collision.gameObject.name == "Ammo")) {
         isGrounded = true;
       } else {
         isDead = true;

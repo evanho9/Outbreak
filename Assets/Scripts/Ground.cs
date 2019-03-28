@@ -21,7 +21,6 @@ public class Ground : MonoBehaviour
     void OnBecameInvisible()
     {
       if (!GameControl.instance.gameOver) {
-        Debug.Log("out of view");
         Destroy(this.gameObject);
       }
     }
