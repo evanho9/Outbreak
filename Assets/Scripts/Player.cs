@@ -10,21 +10,28 @@ public class Player : MonoBehaviour
     private bool isGrounded = false;
     private Rigidbody2D rb2d;
     private Animator anim;
+    private SpriteRenderer spriteRenderer;
+    private float startingX;
     
     // Start is called before the first frame update
     void Start()
     {
       rb2d = GetComponent<Rigidbody2D>();
       anim = GetComponent<Animator>();
-      rb2d.velocity = new Vector2(GameControl.instance.scrollSpeed, 0);
+      spriteRenderer = GetComponent<SpriteRenderer>();
+      rb2d.velocity = new Vector2(0, 0);
       anim.SetTrigger("Run"); 
+      startingX = this.transform.position.x;
     }
 
     // Update is called once per frame
     void Update()
     {
       //isGrounded = Physics2D.OverlapCircle(GroundCheck1.position,0.15f, groundLayer);
-      rb2d.velocity = new Vector2(GameControl.instance.scrollSpeed, rb2d.velocity.y);
+      rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+      if (this.transform.position.x < startingX-0.1) {
+        anim.SetTrigger("onwall");
+      }
       if (!isDead) {  
         //Jump
         if (Input.GetKeyDown("space") && isGrounded) {
