@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
       anim = GetComponent<Animator>();
       spriteRenderer = GetComponent<SpriteRenderer>();
       rb2d.velocity = new Vector2(0, 0);
-      anim.SetTrigger("Run"); 
+      anim.SetTrigger("run"); 
       startingX = this.transform.position.x;
     }
 
@@ -31,13 +31,14 @@ public class Player : MonoBehaviour
       rb2d.velocity = new Vector2(0, rb2d.velocity.y);
       if (this.transform.position.x < startingX-0.1) {
         anim.SetTrigger("onwall");
+        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.02f, this.transform.position.z);
       }
       if (!isDead) {  
         //Jump
         if (Input.GetKeyDown("space") && isGrounded) {
           isGrounded = false;
           rb2d.AddForce(new Vector2(0, upForce));
-          anim.SetTrigger("Jump");
+          anim.SetTrigger("jump");
         }
         if (Input.GetKeyDown("x")) { 
           Weapon weapon = GetComponent<Weapon>();
@@ -57,7 +58,7 @@ public class Player : MonoBehaviour
         isGrounded = true;
       } else {
         isDead = true;
-        anim.SetTrigger("Die");
+        anim.SetTrigger("die");
         GameControl.instance.PlayerDied();
       }
     }

@@ -8,11 +8,21 @@ public class Health : MonoBehaviour
 
   public bool isEnemy = true;
 
+  private AudioSource source;
+  
+  void Awake() 
+  {
+    source = GetComponent<AudioSource>();
+  }
+  
   public void Damage(int damageCount)
   {
     hp -= damageCount;
     if (hp <= 0) {
-      Destroy(gameObject);
+      source.Play();
+      GetComponent<SpriteRenderer>().enabled = false;
+      GetComponent<PolygonCollider2D>().enabled = false;
+      Invoke("DestroyItself", 1f);
     }
   }
 
@@ -26,5 +36,9 @@ public class Health : MonoBehaviour
         Destroy(shot.gameObject);
       }
     }
+  }
+  
+  void DestroyItself() {
+    Destroy(gameObject);
   }
 }
