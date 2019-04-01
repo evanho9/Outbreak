@@ -8,11 +8,13 @@ public class Health : MonoBehaviour
 
   public bool isEnemy = true;
 
+  private ParticleSystem scoreEmitter;
   private AudioSource source;
   
   void Awake() 
   {
     source = GetComponent<AudioSource>();
+    scoreEmitter = GameObject.Find("ScoreEmitter").GetComponent<ParticleSystem>();
   }
   
   public void Damage(int damageCount)
@@ -20,6 +22,8 @@ public class Health : MonoBehaviour
     hp -= damageCount;
     if (hp <= 0) {
       source.Play();
+      GameControl.instance.AddScore(100f);
+      scoreEmitter.Play();
       GetComponent<SpriteRenderer>().enabled = false;
       GetComponent<PolygonCollider2D>().enabled = false;
       Invoke("DestroyItself", 1f);
@@ -32,7 +36,7 @@ public class Health : MonoBehaviour
     if (shot != null) {
       if (shot.isEnemyShot != isEnemy) {
         Damage(shot.damage);
-        GameControl.instance.AddScore(25f);
+        
         Destroy(shot.gameObject);
       }
     }
