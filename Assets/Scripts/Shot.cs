@@ -13,7 +13,7 @@ public class Shot : MonoBehaviour
   void Start()
   {
     rb2d = GetComponent<Rigidbody2D>();
-    Destroy(gameObject, 3);
+    Destroy(gameObject, 2);
   }
   
   void Update()

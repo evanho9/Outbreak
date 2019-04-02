@@ -16,7 +16,13 @@ public class Ground : MonoBehaviour
         
     }
       
-
+    void OnCollisionEnter2D(Collision2D collision) 
+    {
+      Shot shot = collision.gameObject.GetComponent<Shot>();
+      if (shot != null) {
+        Destroy(shot.gameObject);
+      }
+    }
     
     void OnBecameInvisible()
     {
