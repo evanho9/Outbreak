@@ -19,6 +19,7 @@ public class GameControl : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
     public GameObject coin;
+    public GameObject fire;
     
     public GameObject building;
     public GameObject ground;
@@ -48,8 +49,9 @@ public class GameControl : MonoBehaviour
     {
       if (scrollSpeed >= -20 && !gameOver) {
         scrollSpeed -= 0.002f;
-        AddScore(-scrollSpeed/500);
       }
+      if (!gameOver)
+        AddScore(1);
       if (gameOver && Input.GetKeyDown("space")) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
       }
@@ -72,8 +74,8 @@ public class GameControl : MonoBehaviour
     
     void UpdateScore()
     {
-      int scoreRounded = (int)score;
-      scoreText.text = "Score: " + scoreRounded.ToString();
+      int scoreRounded = (int)score * 100;
+      scoreText.text = "Score: " + score.ToString();
     }
     
     public void SpawnTile(int tileType)
@@ -106,7 +108,7 @@ public class GameControl : MonoBehaviour
         spawnPosition.y = -4;
         GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
         newBuilding.name = "Ground";
-        SpawnEnemy(2f);
+        SpawnObstacle(2f);
       }
     }
     
@@ -119,7 +121,7 @@ public class GameControl : MonoBehaviour
         spawnPosition.y = -5.001f;
         GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
         newGround.name = "Ground";
-        SpawnEnemy(0f);
+        SpawnObstacle(0f);
       }
     }
     
@@ -129,6 +131,28 @@ public class GameControl : MonoBehaviour
         lastSpawnedWasLava = true;;
 
         Invoke("SpawnGround",0.4f);
+      }
+    }
+    
+    void SpawnObstacle(float yPos)
+    {
+      if (!gameOver) {
+        int rand = Random.Range(0,2);
+        if (rand == 0)
+          SpawnFire(yPos);
+        if (rand == 1)
+          SpawnEnemy(yPos);
+      }
+    }
+    
+    void SpawnFire(float yPos)
+    {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(-2, 1);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos;
+        GameObject newEnemy = Instantiate(fire, spawnPosition, Quaternion.identity);
       }
     }
     

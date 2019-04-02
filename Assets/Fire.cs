@@ -22,4 +22,11 @@ public class Fire : MonoBehaviour
     {
       audioSource.Play();
     }
+    
+    void OnBecameInvisible()
+    {
+      if (!GameControl.instance.gameOver) {
+        Destroy(this.gameObject);
+      }
+    }
 }

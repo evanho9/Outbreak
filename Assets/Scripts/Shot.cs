@@ -20,4 +20,11 @@ public class Shot : MonoBehaviour
   {
     rb2d.velocity = new Vector2(-GameControl.instance.scrollSpeed*1.5f, 0);
   }
+  
+  void OnBecameInvisible()
+    {
+      if (!GameControl.instance.gameOver) {
+        Destroy(this.gameObject);
+      }
+    }
 }
