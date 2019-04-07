@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2641168362549902526}
   - component: {fileID: 2641168362549902527}
   - component: {fileID: 397145904348201313}
+  - component: {fileID: 4137493966934512956}
   m_Layer: 0
   m_Name: Ammo
   m_TagString: Untagged
@@ -125,7 +126,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -162,3 +163,15 @@ PolygonCollider2D:
       - {x: 0.125, y: -0.37}
       - {x: 0.345, y: -0.29}
       - {x: 0.415, y: -0.25}
+--- !u!114 &4137493966934512956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2641168362549902523}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68407e51f5d66ea47963efd042793b7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

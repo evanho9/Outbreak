@@ -47,7 +47,7 @@ public class GameControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-      if (scrollSpeed >= -20 && !gameOver) {
+      if (scrollSpeed >= -15 && !gameOver) {
         scrollSpeed -= 0.002f;
       }
       if (!gameOver)
@@ -88,11 +88,11 @@ public class GameControl : MonoBehaviour
           SpawnBuilding();
         else if (tileType == 2)
           if (lastSpawnedWasLava) {
-            int randInt = (int)Random.Range(0, 2);
-            if (randInt == 0)
-              SpawnGround();
-            else
+            int randInt = (int)Random.Range(0, 3);
+            if (randInt == 0 || randInt == 1)
               SpawnBuilding();
+            else
+              SpawnGround();
           }
           else
             SpawnLava();
@@ -108,7 +108,9 @@ public class GameControl : MonoBehaviour
         spawnPosition.y = -4;
         GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
         newBuilding.name = "Ground";
-        SpawnObstacle(2f);
+        int randInt = (int)Random.Range(0, 3);
+        if (randInt == 0 || randInt == 1)
+          SpawnObstacle(2f);
       }
     }
     
@@ -121,7 +123,9 @@ public class GameControl : MonoBehaviour
         spawnPosition.y = -5.001f;
         GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
         newGround.name = "Ground";
-        SpawnObstacle(0f);
+        int randInt = (int)Random.Range(0, 3);
+        if (randInt == 0 || randInt == 1)
+          SpawnObstacle(2f);
       }
     }
     
@@ -137,11 +141,11 @@ public class GameControl : MonoBehaviour
     void SpawnObstacle(float yPos)
     {
       if (!gameOver) {
-        int rand = Random.Range(0,2);
-        if (rand == 0)
-          SpawnFire(yPos);
-        if (rand == 1)
+        int rand = Random.Range(0,3);
+        if (rand == 0 || rand ==1)
           SpawnEnemy(yPos);
+        else
+          SpawnFire(yPos);
       }
     }
     
@@ -149,7 +153,7 @@ public class GameControl : MonoBehaviour
     {
       if (!gameOver) {
         Vector3 spawnPosition = player.transform.position;
-        int randFloat = Random.Range(-2, 1);
+        int randFloat = Random.Range(-2, 0);
         spawnPosition.x += spawnPositionOffset + randFloat;
         spawnPosition.y = yPos;
         GameObject newEnemy = Instantiate(fire, spawnPosition, Quaternion.identity);
@@ -171,9 +175,9 @@ public class GameControl : MonoBehaviour
     {
       if (!gameOver) {
         Vector3 spawnPosition = player.transform.position;
-        int randFloat = Random.Range(0, 5);
+        int randFloat = Random.Range(-5, 5);
         spawnPosition.x += spawnPositionOffset + randFloat;
-        spawnPosition.y = yPos;
+        spawnPosition.y = yPos-0.5f;
         GameObject newEnemy = Instantiate(coin, spawnPosition, Quaternion.identity);
       }
     }

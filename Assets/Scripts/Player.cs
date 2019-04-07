@@ -8,6 +8,7 @@ public class Player : MonoBehaviour
   
     private bool isDead = false;
     private bool isGrounded = false;
+    private bool isFirstJump = false;
     private Rigidbody2D rb2d;
     private Animator anim;
     private SpriteRenderer spriteRenderer;
@@ -35,10 +36,17 @@ public class Player : MonoBehaviour
       }
       if (!isDead) {  
         //Jump
-        if (Input.GetKeyDown("space") && isGrounded) {
-          isGrounded = false;
-          rb2d.AddForce(new Vector2(0, upForce));
-          anim.SetTrigger("jump");
+        if (Input.GetKeyDown("space") && (isGrounded || isFirstJump)) {
+          if (isGrounded == false && isFirstJump == true) {
+            rb2d.AddForce(new Vector2(0, upForce/1.5f));
+            anim.SetTrigger("doublejump");
+            isFirstJump = false;
+          } else {
+            isGrounded = false;
+            isFirstJump = true;
+            rb2d.AddForce(new Vector2(0, upForce));
+            anim.SetTrigger("jump");
+          } 
         }
         if (Input.GetKeyDown("x")) { 
           Weapon weapon = GetComponent<Weapon>();
@@ -56,6 +64,7 @@ public class Player : MonoBehaviour
       || collision.gameObject.name == "SpawnGround2" || collision.gameObject.name == "Building"
       || collision.gameObject.name == "Coin" || collision.gameObject.name == "Ammo")) {
         isGrounded = true;
+        isFirstJump = false;
       } else {
         isDead = true;
         anim.SetTrigger("die");
