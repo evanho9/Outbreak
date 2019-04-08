@@ -38,7 +38,7 @@ public class Player : MonoBehaviour
         //Jump
         if (Input.GetKeyDown("space") && (isGrounded || isFirstJump)) {
           if (isGrounded == false && isFirstJump == true) {
-            rb2d.AddForce(new Vector2(0, upForce/1.5f));
+            rb2d.AddForce(new Vector2(0, upForce));
             anim.SetTrigger("doublejump");
             isFirstJump = false;
           } else {

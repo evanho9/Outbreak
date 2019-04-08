@@ -240,10 +240,10 @@ RectTransform:
   m_Father: {fileID: 756445869}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -268.77, y: -200}
-  m_SizeDelta: {x: 232.55, y: 41.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 180.48499, y: 22.917496}
+  m_SizeDelta: {x: 360.96997, y: 45.835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &224219799
 MonoBehaviour:
@@ -282,18 +282,18 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 1
     m_MaxSize: 50
     m_Alignment: 1
     m_AlignByGeometry: 0
-    m_RichText: 1
+    m_RichText: 0
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Space to Jump
+  m_Text: Space to Jump/Double Jump
 --- !u!222 &224219801
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -423,6 +423,7 @@ MonoBehaviour:
   enemy: {fileID: 8418372139153058151, guid: 649de52edddfde34c825211e4febc5fd, type: 3}
   coin: {fileID: 437588093596535389, guid: 614465668e9873b4aa167642117804fd, type: 3}
   fire: {fileID: 8875626323489269322, guid: dd7c7c99d5a5d9147ad60680e14aa614, type: 3}
+  ammo: {fileID: 2641168362549902523, guid: 4a79fed5bcab07146a336bcd37be7f9f, type: 3}
   building: {fileID: 23980190731411601, guid: b25018649a662ba4190e6823fae4d9d4, type: 3}
   ground: {fileID: 5686985233025999409, guid: 5f3be8fe8b8ec0c41a1f8c65a8d423f6, type: 3}
 --- !u!4 &683925736
@@ -1278,7 +1279,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPrefab: {fileID: 5204686635682410311, guid: 383848bf65449d845a59d13de41ea621,
     type: 3}
-  shootingRate: 1
+  shootingRate: 0.01
 --- !u!82 &1289006133
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6164,10 +6165,10 @@ RectTransform:
   m_Father: {fileID: 756445869}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: -200}
-  m_SizeDelta: {x: 232.55, y: 41.5}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: -116.274994, y: 20.75}
+  m_SizeDelta: {x: 232.54999, y: 41.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1334352060
 MonoBehaviour:
@@ -6206,10 +6207,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 32
+    m_FontSize: 20
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 3
+    m_MinSize: 2
     m_MaxSize: 50
     m_Alignment: 1
     m_AlignByGeometry: 0

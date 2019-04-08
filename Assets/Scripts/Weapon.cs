@@ -18,7 +18,7 @@ public class Weapon : MonoBehaviour
   /// Cooldown in seconds between two shots
   /// </summary>
   public float shootingRate = 0.25f;
-
+  private int ammo;
   //--------------------------------
   // 2 - Cooldown
   //--------------------------------
@@ -28,6 +28,7 @@ public class Weapon : MonoBehaviour
 
   void Awake() 
   {
+    ammo = 1;
     source = GetComponent<AudioSource>();
   }
   
@@ -43,6 +44,11 @@ public class Weapon : MonoBehaviour
       shootCooldown -= Time.deltaTime;
     }
   }
+  
+  public void AddAmmo(int amount)
+  {
+    ammo += amount;
+  }
 
   //--------------------------------
   // 3 - Shooting from another script
@@ -53,8 +59,9 @@ public class Weapon : MonoBehaviour
   /// </summary>
   public void Attack(bool isEnemy)
   {
-    if (CanAttack)
+    if (CanAttack && ammo >= 1)
     {
+      ammo--;
       source.Play();
       shootCooldown = shootingRate;
 
