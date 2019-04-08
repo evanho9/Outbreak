@@ -49,7 +49,7 @@ public class GameControl : MonoBehaviour
     void Update()
     {
       if (scrollSpeed >= -15 && !gameOver) {
-        scrollSpeed -= 0.002f;
+        scrollSpeed -= 0.0015f;
       }
       if (!gameOver)
         AddScore(1);
@@ -84,9 +84,9 @@ public class GameControl : MonoBehaviour
       if (!gameOver) {
         int randInt = (int)Random.Range(0, 3);
         if (randInt == 0 || randInt == 1)
-          SpawnCoin(tileType-0.5f);
+          SpawnCoin(tileType-0.25f);
         else
-          SpawnAmmo(tileType-0.5f);
+          SpawnAmmo(tileType-0.25f);
         if (tileType == 0)
           SpawnGround();
         else if (tileType == 1)
@@ -158,7 +158,7 @@ public class GameControl : MonoBehaviour
     {
       if (!gameOver) {
         Vector3 spawnPosition = player.transform.position;
-        int randFloat = Random.Range(-2, 0);
+        int randFloat = Random.Range(-3, -1);
         spawnPosition.x += spawnPositionOffset + randFloat;
         spawnPosition.y = yPos;
         GameObject newEnemy = Instantiate(fire, spawnPosition, Quaternion.identity);

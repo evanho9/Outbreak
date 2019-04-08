@@ -21,7 +21,7 @@ public class Player : MonoBehaviour
       anim = GetComponent<Animator>();
       spriteRenderer = GetComponent<SpriteRenderer>();
       rb2d.velocity = new Vector2(0, 0);
-      anim.SetTrigger("run"); 
+      //anim.SetTrigger("run"); 
       startingX = this.transform.position.x;
     }
 
@@ -39,13 +39,13 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown("space") && (isGrounded || isFirstJump)) {
           if (isGrounded == false && isFirstJump == true) {
             rb2d.AddForce(new Vector2(0, upForce));
-            anim.SetTrigger("doublejump");
+            //anim.SetTrigger("doublejump");
             isFirstJump = false;
           } else {
             isGrounded = false;
             isFirstJump = true;
             rb2d.AddForce(new Vector2(0, upForce));
-            anim.SetTrigger("jump");
+            //anim.SetTrigger("jump");
           } 
         }
         if (Input.GetKeyDown("x")) { 
@@ -67,7 +67,7 @@ public class Player : MonoBehaviour
         isFirstJump = false;
       } else {
         isDead = true;
-        anim.SetTrigger("die");
+        //anim.SetTrigger("die");
         GameControl.instance.PlayerDied();
       }
     }
@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
     void OnBecameInvisible()
     {
       isDead = true;
-      anim.SetTrigger("Die");
+      //anim.SetTrigger("Die");
       GameControl.instance.PlayerDied();
     }
 }

@@ -5,23 +5,28 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     private ParticleSystem scoreEmitter;
-    private SpriteRenderer spriteRenderer;
+    private Transform tranform;
     private CircleCollider2D circleCollider;
+    private AudioSource source;
   
     void Awake() 
     {
       scoreEmitter = GameObject.Find("ScoreEmitter").GetComponent<ParticleSystem>();
-      spriteRenderer = GetComponent<SpriteRenderer>();
+      tranform = GetComponent<Transform>();
       circleCollider = GetComponent<CircleCollider2D>();
+      source = GetComponent<AudioSource>();
     }
   
     void OnTriggerEnter2D(Collider2D other) 
     {
       if ((other.gameObject.name == "Player")) {
         if (!GameControl.instance.gameOver) {
-          GameControl.instance.AddScore(100f);
+
+          
+          source.Play();
+          GameControl.instance.AddScore(250f);
           scoreEmitter.Play();
-          spriteRenderer.enabled = false;
+          transform.localScale = new Vector3(0, 0, 0);
           circleCollider.enabled = false;
           Invoke("DestroyItself", 1f);
         }

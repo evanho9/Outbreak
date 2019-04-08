@@ -11,14 +11,14 @@ public class Health : MonoBehaviour
   private ParticleSystem scoreEmitter;
   private AudioSource source;
   
-  private SpriteRenderer spriteRenderer;
+  private Transform transform;
   private PolygonCollider2D polygonCollider;
   
   void Awake() 
   {
     source = GetComponent<AudioSource>();
     scoreEmitter = GameObject.Find("ScoreEmitter").GetComponent<ParticleSystem>();
-    spriteRenderer = GetComponent<SpriteRenderer>();
+    transform = GetComponent<Transform>();
     polygonCollider = GetComponent<PolygonCollider2D>();
   }
   
@@ -27,9 +27,9 @@ public class Health : MonoBehaviour
     hp -= damageCount;
     if (hp <= 0) {
       source.Play();
-      GameControl.instance.AddScore(100f);
+      GameControl.instance.AddScore(500f);
       scoreEmitter.Play();
-      spriteRenderer.enabled = false;
+      transform.localScale = new Vector3(0, 0, 0);
       polygonCollider.enabled = false;
       Invoke("DestroyItself", 1f);
     }
