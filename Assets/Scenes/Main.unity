@@ -915,7 +915,7 @@ SpriteRenderer:
   m_SortingLayerID: -1230463543
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa20a3682b00e014db1b440b7348a07e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdca1222c462be94fb1f99a3bad0aae6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -1280,6 +1280,7 @@ MonoBehaviour:
   shotPrefab: {fileID: 5204686635682410311, guid: 383848bf65449d845a59d13de41ea621,
     type: 3}
   shootingRate: 0.01
+  ammo: 0
 --- !u!82 &1289006133
 AudioSource:
   m_ObjectHideFlags: 0
@@ -6299,7 +6300,7 @@ SpriteRenderer:
   m_SortingLayerID: -1230463543
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: aa20a3682b00e014db1b440b7348a07e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cdca1222c462be94fb1f99a3bad0aae6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
