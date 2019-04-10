@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Ammo : MonoBehaviour
 {
-    private ParticleSystem scoreEmitter;
+    private ParticleSystem ammoEmitter;
     private Transform transform;
     private PolygonCollider2D polygonCollider;
     private Weapon weapon;
@@ -13,7 +13,7 @@ public class Ammo : MonoBehaviour
     void Awake() 
     {
       weapon = GameObject.Find("Player").GetComponent<Weapon>();
-      scoreEmitter = GameObject.Find("ScoreEmitter").GetComponent<ParticleSystem>();
+      ammoEmitter = GameObject.Find("AmmoEmitter").GetComponent<ParticleSystem>();
       transform = GetComponent<Transform>();
       polygonCollider = GetComponent<PolygonCollider2D>();
       source = GetComponent<AudioSource>();
@@ -25,7 +25,7 @@ public class Ammo : MonoBehaviour
         if (!GameControl.instance.gameOver) {
           source.Play();
           weapon.AddAmmo(1);
-          scoreEmitter.Play();
+          ammoEmitter.Play();
           transform.localScale = new Vector3(0, 0, 0);
           polygonCollider.enabled = false;
           Invoke("DestroyItself", 1f);

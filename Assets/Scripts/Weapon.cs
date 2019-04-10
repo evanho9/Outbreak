@@ -48,6 +48,7 @@ public class Weapon : MonoBehaviour
   public void AddAmmo(int amount)
   {
     ammo += amount;
+    GameControl.instance.UpdateAmmoCounter();
   }
 
   //--------------------------------
@@ -79,7 +80,7 @@ public class Weapon : MonoBehaviour
       {
         shot.isEnemyShot = isEnemy;
       }
-
+      GameControl.instance.UpdateAmmoCounter();
     }
   }
 
