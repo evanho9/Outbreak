@@ -95,10 +95,10 @@ public class GameControl : MonoBehaviour
         int randInt = (int)Random.Range(0, 10);
         if (randInt <= 5)
           SpawnCoin(tileType+1.5f);
-        else if (randInt > 5 && randInt < 7)
+        else if (randInt > 5 && randInt < 8)
           SpawnAmmo(tileType+1.5f);
         else
-          SpawnCoinBlock(tileType+1.5f);
+          SpawnCoinBlock(tileType+2f);
         if (tileType == 0)
           SpawnGround();
         else if (tileType == 1)
@@ -172,7 +172,7 @@ public class GameControl : MonoBehaviour
     {
       if (!gameOver) {
         Vector3 spawnPosition = player.transform.position;
-        int randFloat = Random.Range(-3, -1);
+        int randFloat = Random.Range(0, -1);
         spawnPosition.x += spawnPositionOffset + randFloat;
         spawnPosition.y = yPos;
         Instantiate(fire, spawnPosition, Quaternion.identity);
@@ -208,10 +208,12 @@ public class GameControl : MonoBehaviour
         spawnPosition.x += spawnPositionOffset + randFloat;
         spawnPosition.y = yPos-0.5f;
         int i = 0;
-        while (i < 6) {
-          spawnPosition.x += 0.5f;
+        while (i < 3) {
+          spawnPosition.x += 1.25f;
           Instantiate(coin, spawnPosition, Quaternion.identity);
-          spawnPosition.x += 0.5f;
+          spawnPosition.y -= 1.25f;
+          Instantiate(coin, spawnPosition, Quaternion.identity);
+          spawnPosition.y += 1.25f;
           i++;
         }
       }
