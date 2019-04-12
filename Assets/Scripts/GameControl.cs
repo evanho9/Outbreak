@@ -161,7 +161,7 @@ public class GameControl : MonoBehaviour
     {
       if (!gameOver) {
         int randInt = (int)Random.Range(0, 10);
-        if (randInt < 7)
+        if (randInt < 5)
           SpawnEnemy(yPos);
         else
           SpawnFire(yPos);

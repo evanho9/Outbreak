@@ -28,7 +28,7 @@ public class Weapon : MonoBehaviour
 
   void Awake() 
   {
-    ammo = 1;
+    ammo = 0;
     source = GetComponent<AudioSource>();
   }
   

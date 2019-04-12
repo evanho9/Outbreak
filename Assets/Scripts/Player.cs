@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
     {
       //isGrounded = Physics2D.OverlapCircle(GroundCheck1.position,0.15f, groundLayer);
       rb2d.velocity = new Vector2(0, rb2d.velocity.y);
-      if (this.transform.position.x < startingX-0.1) {
+      if (this.transform.position.x < startingX-0.25) {
         anim.SetTrigger("onwall");
         this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.02f, this.transform.position.z);
       }
