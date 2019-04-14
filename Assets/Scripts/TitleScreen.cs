@@ -9,6 +9,6 @@ public class TitleScreen : MonoBehaviour
     void Update()
     {
         if (Input.GetKey("space"))
-          SceneManager.LoadScene("Main");
+          SceneManager.LoadScene("MainMenu");
     }
 }
