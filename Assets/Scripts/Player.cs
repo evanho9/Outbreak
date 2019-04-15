@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    public float upForce = 300f;
+    public float upVelocity;
   
     private bool isDead = false;
     private bool isGrounded = false;
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
       rb2d.velocity = new Vector2(0, 0);
       //anim.SetTrigger("run"); 
       startingX = this.transform.position.x;
+      //rb2d.gravityScale = -1;
     }
 
     // Update is called once per frame
@@ -38,13 +39,13 @@ public class Player : MonoBehaviour
         //Jump
         if (Input.GetKeyDown("space") && (isGrounded || isFirstJump)) {
           if (isGrounded == false && isFirstJump == true) {
-            rb2d.AddForce(new Vector2(0, upForce));
+            rb2d.velocity = new Vector2(0, upVelocity);
             //anim.SetTrigger("doublejump");
             isFirstJump = false;
           } else {
             isGrounded = false;
             isFirstJump = true;
-            rb2d.AddForce(new Vector2(0, upForce));
+            rb2d.velocity = new Vector2(0, upVelocity);
             //anim.SetTrigger("jump");
           } 
         }
