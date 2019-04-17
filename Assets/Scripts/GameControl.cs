@@ -12,12 +12,15 @@ public class GameControl : MonoBehaviour
     public Text ammoCounter;
     public bool gameOver = false;
     
-    public float scrollSpeed = -5f;
+    public float startingScrollSpeed;
+    public float scrollSpeed;
+    public float scrollSpeedIncrement;
+    public float maxScrollSpeed;
     
     public float score = 0;
     public Text scoreText;
     
-    public GameObject player;
+    private GameObject player;
     public GameObject enemy;
     public GameObject coin;
     public GameObject fire;
@@ -29,7 +32,7 @@ public class GameControl : MonoBehaviour
     
     private float enemySpawnTime = 2f;
     private bool lastSpawnedWasLava = false;
-    private float spawnPositionOffset = 25f;
+    public float spawnPositionOffset;
   
     void Awake()
     {
@@ -45,14 +48,14 @@ public class GameControl : MonoBehaviour
     
     void Start()
     {
-      //InvokeRepeating("SpawnEnemy", enemySpawnTime, enemySpawnTime);
+      scrollSpeed = -startingScrollSpeed;
     }
 
     // Update is called once per frame
     void Update()
     {
-      if (scrollSpeed >= -15 && !gameOver) {
-        scrollSpeed -= 0.0015f;
+      if (scrollSpeed >= -maxScrollSpeed && !gameOver) {
+        scrollSpeed -= scrollSpeedIncrement;
       }
       if (!gameOver)
         AddScore(1);

@@ -144,7 +144,10 @@ MonoBehaviour:
   gameOverText: {fileID: 1985851522}
   ammoCounter: {fileID: 2034522124}
   gameOver: 0
-  scrollSpeed: -5
+  startingScrollSpeed: 10
+  scrollSpeed: 0
+  scrollSpeedIncrement: 0.0015
+  maxScrollSpeed: 20
   score: 0
   scoreText: {fileID: 135063807}
   player: {fileID: 0}
@@ -155,6 +158,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   building: {fileID: 23980190731411601, guid: b25018649a662ba4190e6823fae4d9d4, type: 3}
   ground: {fileID: 5686985233025999409, guid: 5f3be8fe8b8ec0c41a1f8c65a8d423f6, type: 3}
+  spawnPositionOffset: 25
 --- !u!4 &55591749
 Transform:
   m_ObjectHideFlags: 0
@@ -16321,7 +16325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d94903e7fbb8e4da780f3888e088f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upVelocity: 10
+  upVelocity: 9
 --- !u!50 &2080139016
 Rigidbody2D:
   serializedVersion: 4
