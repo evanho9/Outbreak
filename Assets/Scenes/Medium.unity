@@ -144,13 +144,13 @@ MonoBehaviour:
   gameOverText: {fileID: 1985851522}
   ammoCounter: {fileID: 2034522124}
   gameOver: 0
-  startingScrollSpeed: 10
+  isHardMode: 0
+  startingScrollSpeed: 7.5
   scrollSpeed: 0
-  scrollSpeedIncrement: 0.0015
+  scrollSpeedIncrement: 0.002
   maxScrollSpeed: 20
   score: 0
   scoreText: {fileID: 135063807}
-  player: {fileID: 0}
   enemy: {fileID: 8418372139153058151, guid: 649de52edddfde34c825211e4febc5fd, type: 3}
   coin: {fileID: 437588093596535389, guid: 614465668e9873b4aa167642117804fd, type: 3}
   fire: {fileID: 8875626323489269322, guid: dd7c7c99d5a5d9147ad60680e14aa614, type: 3}
@@ -10561,6 +10561,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe78c6c87715ad44b8803de7177549b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHardMode: 0
 --- !u!61 &1270805372
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -16325,7 +16326,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d94903e7fbb8e4da780f3888e088f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upVelocity: 9
+  upVelocity: 10
+  isHardMode: 0
+  maxJumps: 2
 --- !u!50 &2080139016
 Rigidbody2D:
   serializedVersion: 4

@@ -6592,8 +6592,8 @@ MonoBehaviour:
   gameOver: 0
   isHardMode: 1
   startingScrollSpeed: 5
-  scrollSpeed: -5
-  scrollSpeedIncrement: 0.0015
+  scrollSpeed: 0
+  scrollSpeedIncrement: 0.002
   maxScrollSpeed: 20
   score: 0
   scoreText: {fileID: 610333375}

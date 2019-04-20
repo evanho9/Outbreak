@@ -30,6 +30,7 @@ public class Player : MonoBehaviour
       //anim.SetTrigger("run"); 
       startingX = this.transform.position.x;
       numberOfJumpsLeft = maxJumps;
+      //transform = GetComponent<Transform>();
     }
 
     // Update is called once per frame
@@ -41,7 +42,10 @@ public class Player : MonoBehaviour
       rb2d.velocity = new Vector2(0, rb2d.velocity.y);
       if (this.transform.position.x < startingX-0.25) {
         anim.SetTrigger("onwall");
-        this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.02f, this.transform.position.z);
+        if (gravitySwitched)
+          this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y + 0.02f, this.transform.position.z);
+        else
+          this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y - 0.02f, this.transform.position.z);
       }
       if (!isDead) {  
         //Jump
@@ -72,6 +76,7 @@ public class Player : MonoBehaviour
           rb2d.gravityScale *= -1;
           gravitySwitched = !gravitySwitched;
           noJumpFrames = 120;
+          transform.Rotate(0, 180, 180);
         }
       }
     }

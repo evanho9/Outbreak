@@ -555,13 +555,13 @@ MonoBehaviour:
   gameOverText: {fileID: 1286877217}
   ammoCounter: {fileID: 1111950547}
   gameOver: 0
+  isHardMode: 0
   startingScrollSpeed: 5
   scrollSpeed: 0
   scrollSpeedIncrement: 0.0015
   maxScrollSpeed: 15
   score: 0
   scoreText: {fileID: 1620318809}
-  player: {fileID: 0}
   enemy: {fileID: 8418372139153058151, guid: 649de52edddfde34c825211e4febc5fd, type: 3}
   coin: {fileID: 437588093596535389, guid: 614465668e9873b4aa167642117804fd, type: 3}
   fire: {fileID: 8875626323489269322, guid: dd7c7c99d5a5d9147ad60680e14aa614, type: 3}
@@ -569,6 +569,7 @@ MonoBehaviour:
   weapon: {fileID: 0}
   building: {fileID: 23980190731411601, guid: b25018649a662ba4190e6823fae4d9d4, type: 3}
   ground: {fileID: 5686985233025999409, guid: 5f3be8fe8b8ec0c41a1f8c65a8d423f6, type: 3}
+  spawnPositionOffset: 25
 --- !u!4 &683925736
 Transform:
   m_ObjectHideFlags: 0
@@ -884,6 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fe78c6c87715ad44b8803de7177549b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isHardMode: 0
 --- !u!1 &857158078
 GameObject:
   m_ObjectHideFlags: 0
@@ -1636,7 +1638,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54d94903e7fbb8e4da780f3888e088f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upVelocity: 11.5
+  upVelocity: 10
+  isHardMode: 0
+  maxJumps: 2
 --- !u!95 &1289006131
 Animator:
   serializedVersion: 3
