@@ -14,6 +14,12 @@ public class Player : MonoBehaviour
     private SpriteRenderer spriteRenderer;
     private float startingX;
     
+    public bool isHardMode;
+    private bool gravitySwitched = false;
+    private int numberOfJumpsLeft;
+    public int maxJumps;
+    private int noJumpFrames = 0;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -23,12 +29,14 @@ public class Player : MonoBehaviour
       rb2d.velocity = new Vector2(0, 0);
       //anim.SetTrigger("run"); 
       startingX = this.transform.position.x;
-      //rb2d.gravityScale = -1;
+      numberOfJumpsLeft = maxJumps;
     }
 
     // Update is called once per frame
     void Update()
     {
+      if (noJumpFrames > 0)
+        noJumpFrames--;
       //isGrounded = Physics2D.OverlapCircle(GroundCheck1.position,0.15f, groundLayer);
       rb2d.velocity = new Vector2(0, rb2d.velocity.y);
       if (this.transform.position.x < startingX-0.25) {
@@ -37,16 +45,21 @@ public class Player : MonoBehaviour
       }
       if (!isDead) {  
         //Jump
-        if (Input.GetKeyDown("space") && (isGrounded || isFirstJump)) {
+        if (Input.GetKeyDown("space") && noJumpFrames == 0 && numberOfJumpsLeft>0) {
           if (isGrounded == false && isFirstJump == true) {
-            rb2d.velocity = new Vector2(0, upVelocity);
+            if (gravitySwitched)
+              rb2d.velocity = new Vector2(0, -upVelocity);
+            else
+              rb2d.velocity = new Vector2(0, upVelocity);
             //anim.SetTrigger("doublejump");
-            isFirstJump = false;
+            numberOfJumpsLeft--;
           } else {
-            isGrounded = false;
-            isFirstJump = true;
-            rb2d.velocity = new Vector2(0, upVelocity);
+            if (gravitySwitched)
+              rb2d.velocity = new Vector2(0, -upVelocity);
+            else
+              rb2d.velocity = new Vector2(0, upVelocity);
             //anim.SetTrigger("jump");
+            numberOfJumpsLeft--;
           } 
         }
         if (Input.GetKeyDown("x")) { 
@@ -55,18 +68,22 @@ public class Player : MonoBehaviour
             weapon.Attack(false);
           }
         }
+        if (isHardMode && noJumpFrames == 0 && Input.GetKeyDown("z")) { 
+          rb2d.gravityScale *= -1;
+          gravitySwitched = !gravitySwitched;
+          noJumpFrames = 120;
+        }
       }
     }
     
     void OnCollisionEnter2D(Collision2D collision) 
     {
       //Player collides with ground
-      if ((collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround" 
-      || collision.gameObject.name == "SpawnGround2" || collision.gameObject.name == "Building"
-      || collision.gameObject.name == "Coin" || collision.gameObject.name == "Ammo")) {
-        isGrounded = true;
-        isFirstJump = false;
-      } else {
+      if (collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround" 
+      || collision.gameObject.name == "SpawnGround2" || collision.gameObject.name == "Building") {
+        Debug.Log("REFRESH JUMPS");
+        numberOfJumpsLeft = maxJumps;
+      } else if (collision.gameObject.name != "Coin" || collision.gameObject.name != "Ammo"){
         isDead = true;
         //anim.SetTrigger("die");
         GameControl.instance.PlayerDied();

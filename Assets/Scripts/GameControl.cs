@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviour
     public GameObject gameOverText;
     public Text ammoCounter;
     public bool gameOver = false;
+    public bool isHardMode;
     
     public float startingScrollSpeed;
     public float scrollSpeed;
@@ -32,6 +33,7 @@ public class GameControl : MonoBehaviour
     
     private float enemySpawnTime = 2f;
     private bool lastSpawnedWasLava = false;
+    private bool lastSpawnedWasLavaHard = false;
     public float spawnPositionOffset;
   
     void Awake()
@@ -94,28 +96,28 @@ public class GameControl : MonoBehaviour
     
     public void SpawnTile(int tileType)
     {
-      if (!gameOver) {
-        int randInt = (int)Random.Range(0, 10);
-        if (randInt <= 5)
-          SpawnCoin(tileType+1.5f);
-        else if (randInt > 5 && randInt < 8)
-          SpawnAmmo(tileType+1.5f);
-        else
-          SpawnCoinBlock(tileType+2f);
-        if (tileType == 0)
-          SpawnGround();
-        else if (tileType == 1)
-          SpawnBuilding();
-        else if (tileType == 2)
-          if (lastSpawnedWasLava) {
-            int randInt2 = (int)Random.Range(0, 3);
-            if (randInt2 == 0 || randInt2 == 1)
-              SpawnBuilding();
-            else
-              SpawnGround();
-          }
+        if (!gameOver) {
+          int randInt = (int)Random.Range(0, 10);
+          if (randInt <= 5)
+            SpawnCoin(tileType+1.5f);
+          else if (randInt > 5 && randInt < 8)
+            SpawnAmmo(tileType+1.5f);
           else
-            SpawnLava();
+            SpawnCoinBlock(tileType+2f);
+          if (tileType == 0)
+            SpawnGround();
+          else if (tileType == 1)
+            SpawnBuilding();
+          else if (tileType == 2)
+            if (lastSpawnedWasLava) {
+              int randInt2 = (int)Random.Range(0, 3);
+              if (randInt2 == 0 || randInt2 == 1)
+                SpawnBuilding();
+              else
+                SpawnGround();
+            }
+            else
+              SpawnLava();
       }
     }
     
@@ -223,6 +225,152 @@ public class GameControl : MonoBehaviour
     }
     
     void SpawnAmmo(float yPos)
+    {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(-5, 5);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos-0.5f;
+        Instantiate(ammo, spawnPosition, Quaternion.identity);
+      }
+    }
+    
+    public void SpawnHardTile(int tileType)
+    {
+      int rand = (int)Random.Range(0, 3);
+      if (rand == 0)
+          SpawnTile(tileType);
+      else {
+        if (!gameOver) {
+          int randInt = (int)Random.Range(0, 10);
+          if (randInt <= 5)
+            SpawnHardCoin(tileType+1.5f);
+          else if (randInt > 5 && randInt < 8)
+            SpawnHardAmmo(tileType+1.5f);
+          else
+            SpawnCoinBlock(tileType+2f);
+          if (tileType == 0)
+            SpawnHardGround();
+          else if (tileType == 1)
+            SpawnHardBuilding();
+          else if (tileType == 2)
+            if (lastSpawnedWasLavaHard) {
+              int randInt2 = (int)Random.Range(0, 3);
+              if (randInt2 == 0 || randInt2 == 1)
+                SpawnHardBuilding();
+              else
+                SpawnHardGround();
+            }
+            else
+              SpawnHardLava();
+        }
+      }
+    }
+    
+    void SpawnHardBuilding()
+    {
+      if (!gameOver) {
+        lastSpawnedWasLavaHard = false;
+        Vector3 spawnPosition = player.transform.position;
+        spawnPosition.x += spawnPositionOffset;
+        float randFloat = Random.Range(6, 8);
+        spawnPosition.y = randFloat;
+        GameObject newBuilding = Instantiate(ground, spawnPosition, Quaternion.identity);
+        newBuilding.name = "Ground";
+        int randInt = (int)Random.Range(0, 6);
+        if (randInt < 5)
+          SpawnHardObstacle(2f);
+      }
+    }
+    
+    void SpawnHardGround()
+    {
+      if (!gameOver) {
+        lastSpawnedWasLavaHard = false;
+        Vector3 spawnPosition = player.transform.position;
+        spawnPosition.x += spawnPositionOffset;
+        float randFloat = Random.Range(8, 10);
+        spawnPosition.y = randFloat;
+        GameObject newGround = Instantiate(ground, spawnPosition, Quaternion.identity);
+        newGround.name = "Ground";
+        int randInt = (int)Random.Range(0, 6);
+        if (randInt < 5)
+          SpawnHardObstacle(2f);
+      }
+    }
+    
+    void SpawnHardLava()
+    {
+      if (!gameOver) {
+        lastSpawnedWasLavaHard = true;;
+
+        Invoke("SpawnHardGround",0.4f);
+      }
+    }
+    
+    void SpawnHardObstacle(float yPos)
+    {
+      if (!gameOver) {
+        int randInt = (int)Random.Range(0, 10);
+        if (randInt < 5)
+          SpawnHardEnemy(yPos);
+        else
+          SpawnHardFire(yPos);
+      }
+    }
+    
+    void SpawnHardFire(float yPos)
+    {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(0, -1);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos;
+        Instantiate(fire, spawnPosition, Quaternion.identity).GetComponent<Rigidbody2D>().gravityScale = -50;
+      }
+    }
+    
+    void SpawnHardEnemy(float yPos)
+    {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(0, 3);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos;
+        Instantiate(enemy, spawnPosition, Quaternion.identity).GetComponent<Rigidbody2D>().gravityScale = -50;
+      }
+    }
+    
+    void SpawnHardCoin(float yPos)
+    {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(-5, 5);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos-0.5f;
+        Instantiate(coin, spawnPosition, Quaternion.identity);
+      }
+    }
+    
+    void SpawnHardCoinBlock(float yPos) {
+      if (!gameOver) {
+        Vector3 spawnPosition = player.transform.position;
+        int randFloat = Random.Range(-5, 5);
+        spawnPosition.x += spawnPositionOffset + randFloat;
+        spawnPosition.y = yPos-0.5f;
+        int i = 0;
+        while (i < 3) {
+          spawnPosition.x += 1.25f;
+          Instantiate(coin, spawnPosition, Quaternion.identity);
+          spawnPosition.y -= 1.25f;
+          Instantiate(coin, spawnPosition, Quaternion.identity);
+          spawnPosition.y += 1.25f;
+          i++;
+        }
+      }
+    }
+    
+    void SpawnHardAmmo(float yPos)
     {
       if (!gameOver) {
         Vector3 spawnPosition = player.transform.position;
