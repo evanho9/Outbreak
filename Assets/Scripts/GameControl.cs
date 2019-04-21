@@ -64,6 +64,9 @@ public class GameControl : MonoBehaviour
       if (gameOver && Input.GetKeyDown("space")) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
       }
+      if (gameOver && Input.GetKeyDown("x")) {
+        SceneManager.LoadScene(1);
+      }
       if (Input.GetKeyDown("escape")) {
         Application.Quit();
       }
