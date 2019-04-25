@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviour
     public GameObject gameOverText;
     public Text ammoCounter;
     public bool gameOver = false;
+    public bool isEasyMode;
     public bool isHardMode;
     
     public float startingScrollSpeed;
@@ -178,7 +179,7 @@ public class GameControl : MonoBehaviour
     
     void SpawnFire(float yPos)
     {
-      if (!gameOver) {
+      if (!gameOver && !isEasyMode) {
         Vector3 spawnPosition = player.transform.position;
         int randFloat = Random.Range(0, -1);
         spawnPosition.x += spawnPositionOffset + randFloat;

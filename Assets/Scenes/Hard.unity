@@ -6585,6 +6585,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1432522709}
   - component: {fileID: 1432522710}
+  - component: {fileID: 1432522711}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -6592,20 +6593,25 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &1432522709
-Transform:
+--- !u!224 &1432522709
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1432522708}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 50, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 55, y: 55, z: 1}
   m_Children: []
   m_Father: {fileID: 518404151}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &1432522710
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -6643,7 +6649,7 @@ SpriteRenderer:
   m_SortingLayerID: 1283037717
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5c63b32fdf5d90b4cb384e2a02ec6083, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c646806a9afd48f4fbf99b799692a56d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -6654,6 +6660,20 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1432522711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1432522708}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1254083943, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AspectMode: 4
+  m_AspectRatio: 0.001
 --- !u!1 &1508222695
 GameObject:
   m_ObjectHideFlags: 0
@@ -6687,7 +6707,7 @@ MonoBehaviour:
   ammoCounter: {fileID: 1374126283}
   gameOver: 0
   isHardMode: 1
-  startingScrollSpeed: 5
+  startingScrollSpeed: 8
   scrollSpeed: 0
   scrollSpeedIncrement: 0.002
   maxScrollSpeed: 20

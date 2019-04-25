@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
         if (isHardMode && noJumpFrames == 0 && Input.GetKeyDown("z")) { 
           rb2d.gravityScale *= -1;
           gravitySwitched = !gravitySwitched;
-          noJumpFrames = 120;
+          noJumpFrames = 100;
           transform.Rotate(0, 180, 180);
         }
       }
