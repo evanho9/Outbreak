@@ -6706,6 +6706,7 @@ MonoBehaviour:
   gameOverText: {fileID: 984602919}
   ammoCounter: {fileID: 1374126283}
   gameOver: 0
+  isEasyMode: 0
   isHardMode: 1
   startingScrollSpeed: 8
   scrollSpeed: 0
@@ -6713,7 +6714,7 @@ MonoBehaviour:
   maxScrollSpeed: 20
   score: 0
   scoreText: {fileID: 610333375}
-  enemy: {fileID: 8418372139153058151, guid: 649de52edddfde34c825211e4febc5fd, type: 3}
+  enemy: {fileID: 8418372139153058151, guid: d9d656faba1bc7144a0d3f01cdd5bfe1, type: 3}
   coin: {fileID: 437588093596535389, guid: 614465668e9873b4aa167642117804fd, type: 3}
   fire: {fileID: 8875626323489269322, guid: dd7c7c99d5a5d9147ad60680e14aa614, type: 3}
   ammo: {fileID: 2641168362549902523, guid: 4a79fed5bcab07146a336bcd37be7f9f, type: 3}
