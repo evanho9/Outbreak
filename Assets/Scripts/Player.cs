@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public float upVelocity;
   
     private bool isDead = false;
-    private bool isGrounded = false;
     private bool isFirstJump = false;
     private Rigidbody2D rb2d;
     private Animator anim;
@@ -19,6 +18,7 @@ public class Player : MonoBehaviour
     private int numberOfJumpsLeft;
     public int maxJumps;
     private int noJumpFrames = 0;
+    private bool canSwitchGravity = true;
     
     // Start is called before the first frame update
     void Start()
@@ -37,7 +37,7 @@ public class Player : MonoBehaviour
     void Update()
     {
       if (noJumpFrames > 0)
-        noJumpFrames--;
+        //noJumpFrames--;
       //isGrounded = Physics2D.OverlapCircle(GroundCheck1.position,0.15f, groundLayer);
       rb2d.velocity = new Vector2(0, rb2d.velocity.y);
       if (this.transform.position.x < startingX-0.25) {
@@ -49,8 +49,8 @@ public class Player : MonoBehaviour
       }
       if (!isDead) {  
         //Jump
-        if (Input.GetKeyDown("space") && noJumpFrames == 0 && numberOfJumpsLeft>0) {
-          if (isGrounded == false && isFirstJump == true) {
+        if (Input.GetKeyDown("space") && numberOfJumpsLeft>0) {
+          if (isFirstJump == true) {
             if (gravitySwitched)
               rb2d.velocity = new Vector2(0, -upVelocity);
             else
@@ -72,10 +72,11 @@ public class Player : MonoBehaviour
             weapon.Attack(false);
           }
         }
-        if (isHardMode && noJumpFrames == 0 && Input.GetKeyDown("z")) { 
+        if (isHardMode && noJumpFrames == 0 && Input.GetKeyDown("z") && canSwitchGravity) { 
           rb2d.gravityScale *= -1;
+          canSwitchGravity = false;
           gravitySwitched = !gravitySwitched;
-          noJumpFrames = 100;
+          //noJumpFrames = 80;
           transform.Rotate(0, 180, 180);
         }
       }
@@ -85,9 +86,11 @@ public class Player : MonoBehaviour
     {
       //Player collides with ground
       if (collision.gameObject.name == "Ground" || collision.gameObject.name == "SpawnGround" 
-      || collision.gameObject.name == "SpawnGround2" || collision.gameObject.name == "Building") {
+      || collision.gameObject.name == "SpawnGround2" || collision.gameObject.name == "Building"
+      || collision.gameObject.name == "MediumGround" || collision.gameObject.name == "HardGround") {
         Debug.Log("REFRESH JUMPS");
         numberOfJumpsLeft = maxJumps;
+        canSwitchGravity = true;
       } else if (collision.gameObject.name != "Coin" || collision.gameObject.name != "Ammo"){
         isDead = true;
         //anim.SetTrigger("die");
