@@ -330,7 +330,7 @@ public class GameControl : MonoBehaviour
         int randFloat = Random.Range(0, -1);
         spawnPosition.x += spawnPositionOffset + randFloat;
         spawnPosition.y = yPos;
-        Instantiate(fire, spawnPosition, Quaternion.identity).GetComponent<Rigidbody2D>().gravityScale = -50;
+        Instantiate(fire, spawnPosition, Quaternion.AngleAxis(180, Vector3.right)).GetComponent<Rigidbody2D>().gravityScale = -50;
       }
     }
     
@@ -341,7 +341,8 @@ public class GameControl : MonoBehaviour
         int randFloat = Random.Range(0, 3);
         spawnPosition.x += spawnPositionOffset + randFloat;
         spawnPosition.y = yPos;
-        Instantiate(enemy, spawnPosition, Quaternion.identity).GetComponent<Rigidbody2D>().gravityScale = -50;
+        Instantiate(enemy, spawnPosition, Quaternion.AngleAxis(180, Vector3.right)).GetComponent<Rigidbody2D>().gravityScale = -50;
+        
       }
     }
     

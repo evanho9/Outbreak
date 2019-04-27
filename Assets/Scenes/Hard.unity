@@ -425,7 +425,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 22.917496}
+  m_AnchoredPosition: {x: 0, y: 22.91748}
   m_SizeDelta: {x: 360.96997, y: 45.835}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &73663227
@@ -6865,7 +6865,7 @@ MonoBehaviour:
   scoreText: {fileID: 610333375}
   enemy: {fileID: 8418372139153058151, guid: d9d656faba1bc7144a0d3f01cdd5bfe1, type: 3}
   coin: {fileID: 437588093596535389, guid: 614465668e9873b4aa167642117804fd, type: 3}
-  fire: {fileID: 8875626323489269322, guid: dd7c7c99d5a5d9147ad60680e14aa614, type: 3}
+  fire: {fileID: 8875626323489269322, guid: 94aa61e351159fb4daccf2ebc2ff5207, type: 3}
   ammo: {fileID: 2641168362549902523, guid: 4a79fed5bcab07146a336bcd37be7f9f, type: 3}
   weapon: {fileID: 0}
   building: {fileID: 23980190731411601, guid: b25018649a662ba4190e6823fae4d9d4, type: 3}
