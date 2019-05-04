@@ -23,4 +23,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Hard.unity
     guid: 7414738a05223a04f94ac6468efbca15
+  - enabled: 1
+    path: Assets/Scenes/EasyLeaderboard.unity
+    guid: 59d3ab2ddda3b3b45a68bde08cbc8122
+  - enabled: 1
+    path: Assets/Scenes/MediumLeaderboard.unity
+    guid: daac9fcaf2bc72846a340c563c1cf6a9
+  - enabled: 1
+    path: Assets/Scenes/HardLeaderboard.unity
+    guid: cd8766f79d94abd45831b6e1ed283385
   m_configObjects: {}
