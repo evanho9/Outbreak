@@ -144,6 +144,7 @@ MonoBehaviour:
   gameOverText: {fileID: 984602919}
   ammoCounter: {fileID: 2034522124}
   gameOver: 0
+  difficulty: medium
   isEasyMode: 0
   isHardMode: 0
   startingScrollSpeed: 7.5

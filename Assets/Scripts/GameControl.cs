@@ -11,6 +11,7 @@ public class GameControl : MonoBehaviour
     public GameObject gameOverText;
     public Text ammoCounter;
     public bool gameOver = false;
+    public string difficulty;
     public bool isEasyMode;
     public bool isHardMode;
     
@@ -75,6 +76,9 @@ public class GameControl : MonoBehaviour
     
     public void PlayerDied() 
     {
+      if (score > PlayerPrefs.GetFloat(difficulty+"HighScore")) {
+        PlayerPrefs.SetFloat(difficulty+"HighScore", score);
+      }
       gameOverText.SetActive(true);
       gameOver = true;
     }
